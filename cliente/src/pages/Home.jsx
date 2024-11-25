@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 
 export default function Home() {
-
   const [usuarios, setUsuarios] = useState([]);
-
   useEffect(() => {
     const buscarUsuario = async () => {
       try {
