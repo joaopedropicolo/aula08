@@ -9,11 +9,13 @@ export default function Home() {
         const dados = await resposta.json();
         setUsuarios(dados);
       } catch {
-        alert('Ocorreu um erro no app!');
+        alert("Ocorreu um erro no app!");
       }
-    }
+    };
     buscarUsuario();
-  }, [])
+    alert('Usuário Registrado!')
+  }, []);
+  
 
   return (
     <table>
