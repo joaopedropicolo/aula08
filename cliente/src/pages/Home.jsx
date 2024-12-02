@@ -13,9 +13,17 @@ export default function Home() {
       }
     };
     buscarUsuario();
-    alert('Usuário Registrado!')
-  }, []);
-  
+  }, [usuarios]);
+
+  const Deletar = async(id) =>{
+    try{
+    await fetch('http://localhost:3000/usuarios' + id,{
+      method: 'DELETE'
+    });
+    } catch{
+      console.log('Erro, usuário não deletado')
+    }
+  }
 
   return (
     <table>
@@ -27,6 +35,7 @@ export default function Home() {
         <tr key={usuario.id}>
           <td>{usuario.nome}</td>
           <td>{usuario.email}</td>
+          <td><button onClick={() => Deletar(usuario.id)}> X </button></td>
         </tr>
       )}
     </table>

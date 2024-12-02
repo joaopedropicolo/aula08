@@ -1,10 +1,13 @@
-import { useState } from "react";
-import styles from '../styles/Register.module.css'
+import { useState } from 'react';
+import styles from '../styles/Register.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Registrar() {
 
   const [Nome, setNome] = useState('');
   const [Email, setEmail] = useState('');
+
+  const navigate = useNavigate();
 
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -24,12 +27,12 @@ export default function Registrar() {
     });
     await delay(3040);
 
-    if (Nome === "" || Email === "") {
+    if (Registrar.ok) {
       Toast.fire({
         icon: "warning",
         title: "Informações não inseridas!",
       });
-      return console.log('Informações não inseridas. Registro Abortado.')
+      return console.log('Informações não inseridas. Registro cancelado.')
     }
     try {
       await fetch('http://localhost:3000/usuarios', {
@@ -40,6 +43,7 @@ export default function Registrar() {
           email: Email
         })
       });
+      navigate('/')
       console.log('Cliente registrado com sucesso!');
       const Toast = Swal.mixin({
         toast: true,
