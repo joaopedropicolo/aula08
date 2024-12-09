@@ -17,14 +17,14 @@ export default function Home() {
 
   const Deletar = async(id) =>{
     try{
-    await fetch('http://localhost:3000/usuarios' + id,{
+    await fetch('http://localhost:3000/usuarios/' + id,{
       method: 'DELETE'
     });
     } catch{
       console.log('Erro, usuário não deletado')
     }
   }
-
+  
   return (
     <table>
       <tr>

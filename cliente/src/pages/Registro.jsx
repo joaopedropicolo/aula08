@@ -18,14 +18,14 @@ export default function Registrar() {
       toast: true,
       position: "top-end",
       showConfirmButton: false,
-      timer: 3040,
+      timer: 2500,
       timerProgressBar: true,
     });
     Toast.fire({
       icon: "info",
       title: "Registrando Usuário..."
     });
-    await delay(3040);
+    await delay(2500);
 
     if (Registrar.ok) {
       Toast.fire({
@@ -49,7 +49,7 @@ export default function Registrar() {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 3040,
+        timer: 2500,
         timerProgressBar: true,
       });
       Toast.fire({
@@ -62,7 +62,7 @@ export default function Registrar() {
     }
   };
   
-  return (
+return (
     <main className={styles.main}>
     <h1>Registre-se:</h1>
     <form action="" onSubmit={Registrar}>
