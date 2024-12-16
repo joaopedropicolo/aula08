@@ -1,13 +1,11 @@
 import { useState } from 'react';
 import styles from '../styles/Register.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Button } from '@mui/material';
 
 export default function Registrar() {
 
   const [Nome, setNome] = useState('');
   const [Email, setEmail] = useState('');
-
-  const navigate = useNavigate();
 
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -27,7 +25,7 @@ export default function Registrar() {
     });
     await delay(2500);
 
-    if (Registrar.ok) {
+    if (Nome == "" || Email == "") {
       Toast.fire({
         icon: "warning",
         title: "Informações não inseridas!",
@@ -43,7 +41,6 @@ export default function Registrar() {
           email: Email
         })
       });
-      navigate('/')
       console.log('Cliente registrado com sucesso!');
       const Toast = Swal.mixin({
         toast: true,
@@ -71,8 +68,8 @@ return (
   <p>Email:</p>
   <input placeholder="Insira seu e-mail" value={Email} onChange={(event) => setEmail(event.target.value)} />
 </form>
-<button onClick={Registrar}>Enviar</button>
-<a href="http://localhost:3000/usuarios" className={styles.pButton}>
+<Button variant="contained" color="success" onClick={Registrar}>Enviar</Button>
+<a href="/admin" className={styles.pButton}>
   Verificar Banco de Dados
 </a>
 </main>

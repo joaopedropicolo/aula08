@@ -1,19 +1,17 @@
-/* eslint-disable react/prop-types */
-import styles from '../styles/listaProdutos.module.css'
+import listaProdutosStyles from '../styles/ListaProdutos.module.css';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
-export default function ListaProdutos({ produtos }) {
+export default function ListaProdutos({ produtos, adicionarItemCarrinho }) {
   return (
-    <>
-      <ul className={styles.bloco}>
-        {produtos.map(produto => (
-          <li key={produto.id}>
-            <h2>{produto.title}</h2>
-            <p>{produto.description}</p>
-            <p>Preço: {produto.price}</p>
-            <img src={produto.image} alt={produto.title} width={100} />
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className={listaProdutosStyles.displayProdutos}>
+      {produtos.map(produto => (
+        <div key={produto.id} className={listaProdutosStyles.produtoItem}>
+          <h2 className={listaProdutosStyles.produtoNome}>{produto.nome}</h2>
+          <img className={listaProdutosStyles.produtoImagem} src={produto.image} alt={produto.nome} />
+          <p className={listaProdutosStyles.produtoPreco}>Preço: R${produto.preco}</p>
+          <button className={listaProdutosStyles.botaoCarrinho} onClick={() => adicionarItemCarrinho(produto)}><AddShoppingCartOutlinedIcon/></button>
+        </div>
+      ))}
+    </div>
   );
 }

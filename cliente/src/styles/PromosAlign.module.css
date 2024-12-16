@@ -1,0 +1,63 @@
+.titleProdutos{
+  color: #161718;
+  font-size: 1.42857rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  padding-bottom: 0;
+}
+
+.promosAlignTop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.promosAlignTop img {
+  width: 20%;
+  height: 20%;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.promosAlignTop img:hover {
+  transform: scale(1.05);
+}
+
+.promosAlign{
+  padding-top: 20px;
+  height: 40%;
+  align-items: baseline;
+  text-align: center;
+}
+
+.promosAlign img {
+  border-radius: 100%;
+  transition: transform 0.2s ease;
+}
+
+.promosAlign img:hover {
+  transform: scale(1.1);
+}
+
+.promosAlign2{
+  padding-top: 20px;
+  height: auto;
+  align-items: baseline;
+  text-align: center;
+  clear: both;
+}
+
+.promosAlign2 img {
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.promosAlign2 img:hover {
+  transform: scale(1.1);
+}
+

@@ -1,0 +1,26 @@
+.ListaProdutos.displayProdutos {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+    flex-wrap: wrap;
+}
+
+.ListaProdutos.displayProdutos div {
+    background-color: #f1f1f1;
+    border: 1px solid #7700ff;
+    border-radius: 8px;
+    padding: 16px;
+    width: calc(33.333% - 32px);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.ListaProdutos.displayProdutos div img {
+    max-width: 100%;
+    height: auto;
+}

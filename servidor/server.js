@@ -63,6 +63,13 @@ app.delete('/usuarios/:id', (req, res) => {
     res.status(204).send();
 });
 
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
-});
+const port = 3000
+const Servidor = { ok: true };
+if (Servidor.ok) {
+    console.log('Verificando. . .')
+    setTimeout(() => {
+        app.listen(port, () => {
+            console.log(`Servidor rodando na porta ${port}`);
+        });
+    }, 1800);
+};
