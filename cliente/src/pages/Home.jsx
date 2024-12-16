@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Carrinho from '../components/Carrinho';
 import ListaProdutos from '../components/ListaProdutos';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -9,11 +8,11 @@ import promosAlignStyles from '../styles/PromosAlign.module.css';
 import homeStyles from '../styles/Home.module.css';
 import carouselStyles from '../styles/Carousel.module.css';
 import listaProdutosStyles from '../styles/ListaProdutos.module.css';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import SellOutlinedIcon from '@mui/icons-material/SellOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
 import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import Loading from '../components/Loading';
 
 export default function Home() {
     const [listaObjetos, setListaObjetos] = useState([
@@ -105,22 +104,11 @@ export default function Home() {
         setCarrinho([...carrinho, produto]);
       };
 
-      const remover = (id) => {
-        let remover = false;
-        const listaAux = carrinho.filter((produto) => {
-          if (remover === false) {
-            if (produto.id !== id) {
-              return true;
-            } else {
-              remover = true;
-              return false;
-            }
-          } else {
-            return true;
-          }
-        });
-        setCarrinho(listaAux);
-      };
+      if(listaObjetos.length === 0){
+        return(
+            <Loading Mensagem={"Carregando . . ."}/>
+        )
+      }
 
     return (
         <>
@@ -149,7 +137,9 @@ export default function Home() {
             <div className={homeStyles.centerListaProdutos}>
                 <h1 className={homeStyles.titleProdutos}><HomeOutlinedIcon/>HOME</h1>
                     <div className={ListaProdutos.displayProdutos}>
-                    <ListaProdutos produtos={listaObjetos.sort().slice(0, 3)} adicionarItemCarrinho={adicionarItemCarrinho}/>
+                        <a href='/produtos'>
+                    <ListaProdutos produtos={listaObjetos.sort().slice(0, 3)}/>
+                        </a>
                 </div>
             </div>
 
@@ -169,7 +159,9 @@ export default function Home() {
             <div className={homeStyles.centerListaProdutos}>
                 <div className={listaProdutosStyles.displayProdutos}>
                 <h1 className={homeStyles.titleProdutos}><RemoveRedEyeOutlinedIcon/>MAIS VISTOS:</h1>
-                    <ListaProdutos produtos={listaObjetos.sort().slice(-3)} adicionarItemCarrinho={adicionarItemCarrinho}/>
+                <a href='/produtos'>
+                    <ListaProdutos produtos={listaObjetos.sort().slice(-3)}/>
+                </a>
                 </div>
             </div>
 
@@ -187,7 +179,9 @@ export default function Home() {
             <div className={homeStyles.centerListaProdutos}>
                 <h1 className={homeStyles.titleProdutos}><SellOutlinedIcon/>VEJA TAMBÉM</h1>
                     <div className={listaProdutosStyles.displayProdutos}>
-                    <ListaProdutos produtos={listaObjetos.sort().slice(-6)} adicionarItemCarrinho={adicionarItemCarrinho}/>
+                    <a href='/produtos'>
+                    <ListaProdutos produtos={listaObjetos.sort().slice(-6)}/>
+                    </a>
                 </div>
             </div>
 

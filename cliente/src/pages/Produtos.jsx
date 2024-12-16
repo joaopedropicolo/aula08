@@ -158,6 +158,11 @@ const [carrinho, setCarrinho] = useState([]);
         setCarrinho(listaAux);
       };
 
+      const orderAZ = () => {
+        const listaOrdenada = [listaObjetos].sort((a, b) => a.title.localCompare(b.title));
+        setListaObjetos(listaOrdenada);
+      }
+
     return(
         <>
             <Header/>
@@ -205,6 +210,9 @@ const [carrinho, setCarrinho] = useState([]);
             <div className={homeStyles.centerListaProdutos}>
                 <div className={listaProdutosStyles.displayProdutos}>
                 <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/>MAIS VISTOS:</h1>
+                <button onClick={() => orderAZ()}>
+                    A - Z
+                </button>
                     <ListaProdutos produtos={listaObjetos.sort()} adicionarItemCarrinho={adicionarItemCarrinho}/>
                 </div>
             </div>
