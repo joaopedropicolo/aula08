@@ -4,6 +4,7 @@ import styles from '../styles/TabelaUsuarios.module.css';
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import { Link } from 'react-router-dom';
 
 export default function TabelaUsuarios({ ExportarPDF, Deletar, usuarios, showTable }) {
   return (
@@ -26,7 +27,7 @@ export default function TabelaUsuarios({ ExportarPDF, Deletar, usuarios, showTab
               <td>{usuario.email}</td>
               <td>
                 <button onClick={() => Deletar(usuario.id)} className={styles.deleteButton}><Cancel/></button>
-                <button onClick={() => Deletar(usuario.id)} className={styles.deleteButton}><EditIcon/></button>
+                <Link to={'/alterar/' + usuario.id} ><button className={styles.deleteButton}><EditIcon/></button></Link>
               </td>
             </tr>
           ))}

@@ -3,7 +3,6 @@ import { jsPDF } from "jspdf"
 import "jspdf-autotable"
 import TabelaUsuarios from "../components/TabelaUsuarios";
 import Loading from "../components/Loading";
-import ListaProdutos from "../components/ListaProdutos";
 
 export default function Home() {
   const [usuarios, setUsuarios] = useState([]);

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from '../styles/Register.module.css';
 import { Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 export default function Registrar() {
 
@@ -16,14 +17,14 @@ export default function Registrar() {
       toast: true,
       position: "top-end",
       showConfirmButton: false,
-      timer: 2500,
+      timer: 1800,
       timerProgressBar: true,
     });
     Toast.fire({
       icon: "info",
       title: "Registrando Usuário..."
     });
-    await delay(2500);
+    await delay(1800);
 
     if (Nome == "" || Email == "") {
       Toast.fire({
@@ -46,7 +47,7 @@ export default function Registrar() {
         toast: true,
         position: "top-end",
         showConfirmButton: false,
-        timer: 2500,
+        timer: 1800,
         timerProgressBar: true,
       });
       Toast.fire({
