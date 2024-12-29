@@ -11,6 +11,9 @@ import carouselStyles from '../styles/Carousel.module.css';
 import listaProdutosStyles from '../styles/ListaProdutos.module.css';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AutoAwesomeOutlinedIcon from '@mui/icons-material/AutoAwesomeOutlined';
+import AbcOutlinedIcon from '@mui/icons-material/AbcOutlined';
+import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
+import { jsPDF } from "jspdf"
 
 export default function Produtos(){
     const [listaObjetos, setListaObjetos] = useState([
@@ -28,7 +31,7 @@ export default function Produtos(){
             image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
             tipo: 'Masculino',
             categoria: ['Masculino, Tênis'],
-            preco: 210
+            preco: 220
         },
         {
             id: 3,
@@ -52,7 +55,7 @@ export default function Produtos(){
             image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
             tipo: 'Masculino',
             categoria: ['Masculino, Tênis'],
-            preco: 200
+            preco: 240
         },
         {
             id: 6,
@@ -84,7 +87,7 @@ export default function Produtos(){
             image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
             tipo: 'Masculino',
             categoria: ['Masculino, Tênis'],
-            preco: 200
+            preco: 210
         },
         {
             id: 10,
@@ -120,7 +123,7 @@ export default function Produtos(){
         },
         {
             id: 14,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
+            nome: "Aênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
             image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
             tipo: 'Masculino',
             categoria: ['Masculino, Tênis'],
@@ -138,17 +141,39 @@ export default function Produtos(){
 
 const [carrinho, setCarrinho] = useState([]);
     const adicionarItemCarrinho = (produto) => {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 2010,
+        timerProgressBar: true,
+    });
+    Toast.fire({
+        icon: "success",
+        title: "Produto adicionado no carrinho!"
+    });
         setCarrinho([...carrinho, produto]);
       };
 
-      const remover = (id) => {
-        let remover = false;
+      const removerItem = (id) => {
+        let itemRemovido = false;
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 2010,
+          timerProgressBar: true,
+      });
+      Toast.fire({
+          icon: "success",
+          title: "Produto removido do carrinho!"
+      });
         const listaAux = carrinho.filter((produto) => {
-          if (remover === false) {
+          if (itemRemovido === false) {
             if (produto.id !== id) {
               return true;
             } else {
-              remover = true;
+            itemRemovido = true;
               return false;
             }
           } else {
@@ -158,10 +183,92 @@ const [carrinho, setCarrinho] = useState([]);
         setCarrinho(listaAux);
       };
 
+      const ExportarPDF = () => {
+          const doc = new jsPDF();
+          let PrecoTotal = carrinho.reduce((total, objeto) => total + objeto.preco, 0).toFixed(2);
+          const tabelaDados = carrinho.map((objeto) => [
+            objeto.id,
+            objeto.nome,
+            'R$'+objeto.preco
+          ]);
+          doc.text('LISTA DE COMPRAS NETSHOES', 10, 10);
+          doc.autoTable({
+            head: [["ID", "Nome", "Preço"]],
+            body: tabelaDados
+          });
+          doc.text(`PRODUTOS TOTAL: ${carrinho.length} /// PREÇO TOTAL: R$${PrecoTotal}`, 10, doc.lastAutoTable.finalY + 10)
+          console.log("Baixando Lista...");
+          doc.save("Compra Netshoes.pdf");
+      };
+      
+
+const comprar = () => {
+    if (carrinho.length === 0) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 1800,
+            timerProgressBar: true,
+        });
+        Toast.fire({
+            icon: "error",
+            title: "Carrinho está vazio!"
+        });
+    } else {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: "btn btn-success",
+              cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+          });
+          swalWithBootstrapButtons.fire({
+            title: "Finalizar Compra?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Sim, finalizar compra!",
+            cancelButtonText: "Não, não finalizar!",
+            reverseButtons: true
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Gerar PDF da sua compra??",
+                    showDenyButton: true,
+                    showCancelButton: false,
+                    confirmButtonText: "Gerar PDF",
+                    denyButtonText: `Não gerar PDF`
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire("PDF Salvo!", "", "success");
+                      ExportarPDF()
+                      setCarrinho([]);
+                    } else if (result.isDenied) {
+                      Swal.fire("Ok, até mais!", "", "success");
+                      setCarrinho([]);
+                    }
+                  });
+            } else if (
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire({
+                title: "Compra Cancelada!",
+                icon: "error"
+              });
+            }
+          });
+    }
+};
+
       const orderAZ = () => {
-        const listaOrdenada = [listaObjetos].sort((a, b) => a.title.localCompare(b.title));
+        const listaOrdenada = [...listaObjetos].sort((a, b) => {return a.nome.localeCompare(b.nome);});
         setListaObjetos(listaOrdenada);
-      }
+      };
+
+      const orderPreco = () => {
+        const listaOrdenada = [...listaObjetos].sort((a, b) => {return a.preco - b.preco});
+        setListaObjetos(listaOrdenada);
+      };
 
     return(
         <>
@@ -187,16 +294,10 @@ const [carrinho, setCarrinho] = useState([]);
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2024-07-16/9101_04.jpg" />
             </div>
 
-            <div className={homeStyles.centerListaProdutos}>
-                <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/>DESTAQUES:</h1>
-                    <div className={ListaProdutos.displayProdutos}>
-                    <ListaProdutos produtos={listaObjetos.sort().slice(0, 3)} adicionarItemCarrinho={adicionarItemCarrinho}/>
-                </div>
-            </div>
-
             <br/>
 
             <div className={promosAlignStyles.promosAlign}>
+            <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/> PRODUTOS: <AutoAwesomeOutlinedIcon/></h1>
             <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/>NA NETSHOES TAMBÉM TEM:</h1>
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2024-04-19/2195_1_1_tnis.png" />
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2024-04-19/4786_1_2_chuteiras.png" />
@@ -211,7 +312,10 @@ const [carrinho, setCarrinho] = useState([]);
                 <div className={listaProdutosStyles.displayProdutos}>
                 <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/>MAIS VISTOS:</h1>
                 <button onClick={() => orderAZ()}>
-                    A - Z
+                    <AbcOutlinedIcon/>
+                </button>
+                <button onClick={() => orderPreco()}>
+                    <AttachMoneyOutlinedIcon/>
                 </button>
                     <ListaProdutos produtos={listaObjetos.sort()} adicionarItemCarrinho={adicionarItemCarrinho}/>
                 </div>
@@ -228,16 +332,9 @@ const [carrinho, setCarrinho] = useState([]);
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2023-09-21/3769_oakley.png" />
             </div>
 
-            <div className={homeStyles.centerListaProdutos}>
-                <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/>CLIENTES TAMBÉM COMPRAM:</h1>
-                    <div className={listaProdutosStyles.displayProdutos}>
-                    <ListaProdutos produtos={listaObjetos.sort().slice(-6)} adicionarItemCarrinho={adicionarItemCarrinho}/>
-                </div>
-            </div>
-
             <h1 className={homeStyles.titleProdutos}><ShoppingCartOutlinedIcon/>CARRINHO</h1>
-            <Carrinho carrinho={carrinho} remover={remover}/>
-
+            <Carrinho carrinho={carrinho} remover={removerItem} comprar={comprar}/>
+            
             <br/><br/>
             <Footer Creditos={"João Pedro Fernandes Picolo"} />
         </>

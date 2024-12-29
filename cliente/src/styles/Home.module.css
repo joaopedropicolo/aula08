@@ -7,9 +7,11 @@
 
 .titleProdutos {
   font-size: 24px;
+  font-family: FreeMono, monospace;
   font-weight: bold;
   margin-bottom: 20px;
   text-align: center;
+  text-decoration: underline;
 }
 
 #centerListaProdutos {

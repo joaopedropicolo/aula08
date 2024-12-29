@@ -116,13 +116,13 @@ export default function Home() {
             <div className={carouselStyles.centerCarousel}>
                 <Carousel infiniteLoop useKeyboardArrows autoPlay showArrows={true} showStatus={false} showThumbs={false} dynamicHeight>
                     <div className="img-carousel">
-                        <img src="https://i0.wp.com/prdnetshoes.wpcomstaging.com/wp-content/uploads/2024/06/novo-posicionamento-logomarca-e-slogan-da-netshoes.png?fit=1050%2C450&ssl=1" />
-                    </div>
-                    <div className="img-carousel">
                         <img src="https://i0.wp.com/prdnetshoes.wpcomstaging.com/wp-content/uploads/2021/02/aniversario21_netshoes_20210211.jpeg?fit=820%2C312&ssl=1" />
                     </div>
                     <div className="img-carousel">
-                        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/3b60b035762415.5702ff8b7f02f.jpg" />
+                        <img src="https://static.netshoes.com.br/bnn/l_netshoes/2024-12-06/3282_natal_precinho_full_desk.jpg" />
+                    </div>
+                    <div className="img-carousel">
+                        <img src="https://tm.ibxk.com.br/2024/10/11/11085545717017.jpg?ims=750x" />
                     </div>
                 </Carousel>
             </div>

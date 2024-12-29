@@ -39,12 +39,12 @@
 }
 
 .listas {
-    gap: 0px;
     margin: 0;
     padding: 0;
 }
 
 .liCss a {
+    align-items: center;
     color: white;
     text-decoration: none;
     font-size: 1.2rem;

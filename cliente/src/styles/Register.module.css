@@ -1,3 +1,7 @@
+.img{
+  width: 60%;
+}
+
 .main {
   font-family: Arial, sans-serif;
   display: flex;

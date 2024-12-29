@@ -3,6 +3,7 @@ import { jsPDF } from "jspdf"
 import "jspdf-autotable"
 import TabelaUsuarios from "../components/TabelaUsuarios";
 import Loading from "../components/Loading";
+import TabelaProdutos from "../components/TabelaProdutos";
 
 export default function Home() {
   const [usuarios, setUsuarios] = useState([]);
@@ -19,15 +20,27 @@ export default function Home() {
     buscarUsuario();
   }, [usuarios]);
 
-  const Deletar = async(id) =>{
-    try{
-    await fetch('http://localhost:3000/usuarios/' + id,{
-      method: 'DELETE'
-    });
-    } catch{
-      console.log('Erro, usuário não deletado')
+  const Deletar = async (id) => {
+    try {
+      const result = await Swal.fire({
+        title: `Excluir o usuário ${id}?`,
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: "Excluir",
+        cancelButtonText: "Cancelar"
+      });
+      if (result.isConfirmed) {
+        await fetch(`http://localhost:3000/usuarios/${id}`, {
+          method: 'DELETE'
+        });
+        Swal.fire("Usuário excluído com sucesso!", "", "success");
+      } else if (result.isDenied) {
+        Swal.fire("Ação cancelada", "", "info");
+      }
+    } catch {
+      console.log('Erro, usuário não deletado');
     }
-  }
+  };
 
   const ExportarPDF = () =>{
     if(usuarios.length == 0){
@@ -50,11 +63,12 @@ export default function Home() {
       usuario.nome,
       usuario.email
     ]);
-    doc.text('Lista de usuários registrados', 10, 10);
+    doc.text('LISTA DE USUÁRIOS REGISTRADOS NETSHOES', 10, 10);
     doc.autoTable({
       head: [["ID", "Nome", "E-mail"]],
       body: tabelaDados
     })
+    doc.text(`TOTAL DE USUÁRIOS: ${usuarios.length}`, 10, doc.lastAutoTable.finalY + 10)
     const Toast = Swal.mixin({
       toast: true,
       position: "top-end",
@@ -69,16 +83,18 @@ export default function Home() {
     console.log("Lista vazia, exportação cancelada.")
     doc.save("registrados.pdf")
   }}
-  
-  if(usuarios.length === 0) {
-    return (
-    <div>
-      <TabelaUsuarios usuarios={usuarios} ExportarPDF={ExportarPDF} Deletar={Deletar} />
-      <Loading Mensagem={"Lista de usuários vazia"}/>
-    </div>
-  )}
+
+  if(usuarios.length === 0){
+    return(
+    <>
+    <TabelaUsuarios usuarios={usuarios} ExportarPDF={ExportarPDF} Deletar={Deletar} />
+    <Loading Mensagem={'Lista de usuários vazia'}/> 
+    </>
+    )}
 
   return (
-    <TabelaUsuarios usuarios={usuarios} ExportarPDF={ExportarPDF} Deletar={Deletar} />
+    <>
+      <TabelaUsuarios usuarios={usuarios} ExportarPDF={ExportarPDF} Deletar={Deletar} />
+    </>
   );
 }

@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import styles from '../styles/Register.module.css';
 import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
 
 export default function Registrar() {
 
-  const [Nome, setNome] = useState('');
-  const [Email, setEmail] = useState('');
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
 
   const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -26,7 +25,7 @@ export default function Registrar() {
     });
     await delay(1800);
 
-    if (Nome == "" || Email == "") {
+    if (nome == "" || email == "") {
       Toast.fire({
         icon: "warning",
         title: "Informações não inseridas!",
@@ -38,8 +37,8 @@ export default function Registrar() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          nome: Nome,
-          email: Email
+          nome: nome,
+          email: email
         })
       });
       console.log('Cliente registrado com sucesso!');
@@ -62,12 +61,13 @@ export default function Registrar() {
   
 return (
     <main className={styles.main}>
+      <img className={styles.img} src='https://i.pinimg.com/originals/43/22/66/4322663d45130136e56a8ecfafc0f6fd.png'></img>
     <h1>Registre-se:</h1>
     <form action="" onSubmit={Registrar}>
   <p>Nome:</p>
-  <input placeholder="Insira seu nome" value={Nome} onChange={(event) => setNome(event.target.value)}/>
+  <input placeholder="Insira seu nome" type='name' value={nome} onChange={(event) => setNome(event.target.value)}/>
   <p>Email:</p>
-  <input placeholder="Insira seu e-mail" value={Email} onChange={(event) => setEmail(event.target.value)} />
+  <input placeholder="Insira seu e-mail" type='email' value={email} onChange={(event) => setEmail(event.target.value)} />
 </form>
 <Button variant="contained" color="success" onClick={Registrar}>Enviar</Button>
 <a href="/admin" className={styles.pButton}>

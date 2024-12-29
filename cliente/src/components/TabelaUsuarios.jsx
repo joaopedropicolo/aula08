@@ -5,6 +5,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { Link } from 'react-router-dom';
+import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 
 export default function TabelaUsuarios({ ExportarPDF, Deletar, usuarios, showTable }) {
   return (
@@ -12,10 +13,12 @@ export default function TabelaUsuarios({ ExportarPDF, Deletar, usuarios, showTab
       <table className={styles.table}>
         <thead>
           <tr>
+            <th>ID</th>
             <th>Nome</th>
             <th>E-mail</th>
             <th>
-              <Button variant="outlined" onClick={showTable} className={styles.exibirButton}><VisibilityIcon/>Exibir</Button>
+              <Link to={'/registro'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><PersonAddOutlinedIcon/>Adicionar</Button></Link>
+              <Link to={'http://localhost:3000/usuarios'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><VisibilityIcon/>Exibir</Button></Link>
               <Button variant="outlined" onClick={ExportarPDF} className={styles.buttonExport}><PictureAsPdfIcon/>Exportar PDF</Button>
             </th>
           </tr>
@@ -23,6 +26,7 @@ export default function TabelaUsuarios({ ExportarPDF, Deletar, usuarios, showTab
         <tbody>
           {usuarios.map((usuario) => (
             <tr key={usuario.id}>
+              <td>{usuario.id}</td>
               <td>{usuario.nome}</td>
               <td>{usuario.email}</td>
               <td>
