@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Carrinho from '../components/Carrinho';
@@ -16,128 +16,19 @@ import AttachMoneyOutlinedIcon from '@mui/icons-material/AttachMoneyOutlined';
 import { jsPDF } from "jspdf"
 
 export default function Produtos(){
-    const [listaObjetos, setListaObjetos] = useState([
-        {
-            id: 1,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 167
-        },
-        {
-            id: 2,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 220
-        },
-        {
-            id: 3,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 600
-        },
-        {
-            id: 4,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 120,
-        },
-        {
-            id: 5,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 240
-        },
-        {
-            id: 6,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 250
-        },
-        {
-            id: 7,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 900
-        },
-        {
-            id: 8,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 580
-        },
-        {
-            id: 9,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 210
-        },
-        {
-            id: 10,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 340
-        },
-        {
-            id: 11,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 230
-        },
-        {
-            id: 12,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 400
-        },
-        {
-            id: 13,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 500
-        },
-        {
-            id: 14,
-            nome: "Aênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 200
-        },
-        {
-            id: 15,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            image: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino, Tênis'],
-            preco: 300
-        }
-    ]);
+const [listaObjetos, setListaObjetos] = useState([]);
+  useEffect(() => {
+    const buscarProduto = async () => {
+      try {
+        const resposta = await fetch("http://localhost:3000/produtos");
+        const dados = await resposta.json();
+        setListaObjetos(dados);
+      } catch {
+        alert("Ocorreu um erro no app!");
+      }
+    };
+    buscarProduto();
+  }, [listaObjetos]);
 
 const [carrinho, setCarrinho] = useState([]);
     const adicionarItemCarrinho = (produto) => {
@@ -188,12 +79,13 @@ const [carrinho, setCarrinho] = useState([]);
           let PrecoTotal = carrinho.reduce((total, objeto) => total + objeto.preco, 0).toFixed(2);
           const tabelaDados = carrinho.map((objeto) => [
             objeto.id,
-            objeto.nome,
+            objeto.nomeProduto,
+            objeto.marca,
             'R$'+objeto.preco
           ]);
           doc.text('LISTA DE COMPRAS NETSHOES', 10, 10);
           doc.autoTable({
-            head: [["ID", "Nome", "Preço"]],
+            head: [["ID", "Nome", "Marca", "Preço"]],
             body: tabelaDados
           });
           doc.text(`PRODUTOS TOTAL: ${carrinho.length} /// PREÇO TOTAL: R$${PrecoTotal}`, 10, doc.lastAutoTable.finalY + 10)
@@ -233,18 +125,18 @@ const comprar = () => {
           }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire({
-                    title: "Gerar PDF da sua compra??",
+                    title: "Deseja gerar um PDF da sua compra?",
                     showDenyButton: true,
                     showCancelButton: false,
                     confirmButtonText: "Gerar PDF",
                     denyButtonText: `Não gerar PDF`
                   }).then((result) => {
                     if (result.isConfirmed) {
-                      Swal.fire("PDF Salvo!", "", "success");
+                      Swal.fire("PDF salvo, obrigado pela compra!", "", "success");
                       ExportarPDF()
                       setCarrinho([]);
                     } else if (result.isDenied) {
-                      Swal.fire("Ok, até mais!", "", "success");
+                      Swal.fire("Ok, obrigado pela compra!", "", "success");
                       setCarrinho([]);
                     }
                   });
@@ -261,7 +153,7 @@ const comprar = () => {
 };
 
       const orderAZ = () => {
-        const listaOrdenada = [...listaObjetos].sort((a, b) => {return a.nome.localeCompare(b.nome);});
+        const listaOrdenada = [...listaObjetos].sort((a, b) => {return a.nomeProduto.localeCompare(b.nomeProduto);});
         setListaObjetos(listaOrdenada);
       };
 
@@ -298,7 +190,7 @@ const comprar = () => {
 
             <div className={promosAlignStyles.promosAlign}>
             <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/> PRODUTOS: <AutoAwesomeOutlinedIcon/></h1>
-            <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/>NA NETSHOES TAMBÉM TEM:</h1>
+            <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/> NA NETSHOES TAMBÉM TEM: <AutoAwesomeOutlinedIcon/></h1>
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2024-04-19/2195_1_1_tnis.png" />
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2024-04-19/4786_1_2_chuteiras.png" />
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2024-04-19/9042_1_3_camisastimes.png" />
@@ -310,7 +202,7 @@ const comprar = () => {
 
             <div className={homeStyles.centerListaProdutos}>
                 <div className={listaProdutosStyles.displayProdutos}>
-                <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/>MAIS VISTOS:</h1>
+                <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/> MAIS VISTOS: <AutoAwesomeOutlinedIcon/></h1>
                 <button onClick={() => orderAZ()}>
                     <AbcOutlinedIcon/>
                 </button>
@@ -322,7 +214,7 @@ const comprar = () => {
             </div>
 
             <div className={promosAlignStyles.promosAlign2}>
-                <h1 className={homeStyles.titleProdutos}>NAVEGUE POR MARCAS:</h1>
+                <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/> NAVEGUE POR MARCAS: <AutoAwesomeOutlinedIcon/></h1>
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2023-09-21/405_adidas.png" />
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2023-09-21/7286_nike.png" />
                 <img src="https://static.netshoes.com.br/bnn/l_netshoes/2023-09-21/5274_olympikus.png" />

@@ -5,6 +5,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { Link } from 'react-router-dom';
+import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
+import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined';
 
 export default function TabelaProdutos({ ExportarPDF, Deletar, produtos, showTable }) {
   return (
@@ -12,13 +14,20 @@ export default function TabelaProdutos({ ExportarPDF, Deletar, produtos, showTab
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>E-mail</th>
+            <th>ID Produto</th>
+            <th>Nome Produto</th>
+            <th>Marca Produto</th>
+            <th>Tipo Produto</th>
+            <th>Preço Produto</th>
             <th>
-              <Link to={'/registro'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><VisibilityIcon/>Exibir</Button></Link>
-              <Link to={'http://localhost:3000/produtos'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><VisibilityIcon/>Exibir</Button></Link>
-              <Button variant="outlined" onClick={ExportarPDF} className={styles.buttonExport}><PictureAsPdfIcon/>Exportar PDF</Button>
+            <Link to={'/registroProduto'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><AddBusinessOutlinedIcon/>Adicionar</Button></Link>
+              <Link to="http://localhost:3000/produtos">
+                <Button variant="outlined" onClick={showTable} className={styles.exibirButton}>
+                  <VisibilityIcon /> Exibir
+                </Button>
+              </Link>
+              <Button variant="outlined" onClick={ExportarPDF} className={styles.buttonExport}><PictureAsPdfIcon /> Exportar PDF
+              </Button>
             </th>
           </tr>
         </thead>
@@ -26,11 +35,18 @@ export default function TabelaProdutos({ ExportarPDF, Deletar, produtos, showTab
           {produtos.map((objeto) => (
             <tr key={objeto.id}>
               <td>{objeto.id}</td>
-              <td>{objeto.nome}</td>
-              <td>{objeto.email}</td>
+              <td>{objeto.nomeProduto}</td>
+              <td>{objeto.marca}</td>
+              <td>{objeto.tipo}</td>
+              <td>R$ {objeto.preco}</td>
               <td>
-                <button onClick={() => Deletar(objeto.id)} className={styles.deleteButton}><Cancel/></button>
-                <Link to={'/alterar/' + objeto.id} ><button className={styles.deleteButton}><EditIcon/></button></Link>
+                <button onClick={() => Deletar(objeto.id)} className={styles.deleteButton}>
+                  <Cancel />
+                </button>
+                <Link to={`/alterarProduto/${objeto.id}`}><button className={styles.deleteButton}>
+                    <EditIcon />
+                  </button>
+                </Link>
               </td>
             </tr>
           ))}

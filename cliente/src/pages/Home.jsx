@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from "react";
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ListaProdutos from '../components/ListaProdutos';
@@ -15,89 +15,19 @@ import RemoveRedEyeOutlinedIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import Loading from '../components/Loading';
 
 export default function Home() {
-    const [listaObjetos, setListaObjetos] = useState([
-        {
-            id: 1,
-            nome: "Sandália crocs crocband cars lightning red - Vermelho",
-            marca: "Croband",
-            image: "https://static.netshoes.com.br/produtos/sandalia-crocs-crocband-cars-lightning-red/16/FDT-6343-016/FDT-6343-016_zoom1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Tênis', 'Infantil'],
-            preco: 300
-        },
-        {
-            id: 2,
-            nome: "Bota Couro Bull Terrier Phoenix Masculina",
-            marca: "Bull",
-            image: "https://static.netshoes.com.br/produtos/bota-couro-bull-terrier-phoenix-masculina/64/A52-3685-264/A52-3685-264_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Bota'],
-            preco: 500
-        },
-        {
-            id: 3,
-            nome: "Tênis Infantil Disney Stich Menina",
-            marca: "Stich",
-            image: "https://static.netshoes.com.br/produtos/tenis-infanil-disney-stich-menina/91/QPV-2059-791/QPV-2059-791_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Tênis', 'Infantil'],
-            preco: 100
-        },
-        {
-            id: 4,
-            nome: "Tênis Nike Downshifter 13 Feminino",
-            marca: "Nike",
-            image: "https://static.netshoes.com.br/produtos/tenis-nike-downshifter-13-feminino/06/JD8-6467-006/JD8-6467-006_zoom1.jpg",
-            tipo: 'Feminino',
-            categoria: ['Feminino', 'Tênis'],
-            preco: 200
-        },
-        {
-            id: 5,
-            nome: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-            marca: "Asics",
-            image: "https://static.netshoes.com.br/produtos/tenis-under-armour-charged-first/72/39W-3305-172/39W-3305-172_zoom1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Tênis', 'Infantil'],
-            preco: 600
-        },
-        {
-            id: 6,
-            nome: "Tênis Mizuno Wave Titan 2 Masculino",
-            marca: "Mizuno",
-            image: "https://static.netshoes.com.br/produtos/tenis-mizuno-wave-titan-2-masculino/93/2FU-6367-793/2FU-6367-793_zoom1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Tênis'],
-            preco: 450
-        },
-        {
-            id: 7,
-            nome: "Sandália Crocs Croband Clog",
-            marca: "Croband",
-            image: "https://static.netshoes.com.br/produtos/sandalia-crocs-croband-clog/88/FDT-0203-088/FDT-0203-088_detalhe1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Crocs'],
-            preco: 450
-        },
-        {
-            id: 8,
-            nome: "Tênis Adidas Response Runner",
-            marca: "Adidas",
-            image: "https://static.netshoes.com.br/produtos/tenis-adidas-response-runner/26/FB9-3696-026/FB9-3696-026_zoom1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Tênis'],
-            preco: 150
-        },
-        {
-            id: 9,
-            nome: "Tênis Mizuno Wave Titan 2 Masculino",
-            marca: "Mizuno",
-            image: "https://static.netshoes.com.br/produtos/tenis-mizuno-wave-titan-2-masculino/06/2FU-6367-006/2FU-6367-006_zoom1.jpg",
-            tipo: 'Masculino',
-            categoria: ['Masculino', 'Tênis'],
-            preco: 230
-        }
-    ]);
+    const [listaObjetos, setListaObjetos] = useState([]);
+      useEffect(() => {
+        const buscarProduto = async () => {
+          try {
+            const resposta = await fetch("http://localhost:3000/produtos");
+            const dados = await resposta.json();
+            setListaObjetos(dados);
+          } catch {
+            alert("Ocorreu um erro no app!");
+          }
+        };
+        buscarProduto();
+      }, [listaObjetos]);
 
     const [carrinho, setCarrinho] = useState([]);
     const adicionarItemCarrinho = (produto) => {
@@ -106,7 +36,7 @@ export default function Home() {
 
       if(listaObjetos.length === 0){
         return(
-            <Loading Mensagem={"Carregando . . ."}/>
+            <Loading Mensagem={"Carregando Produtos"}/>
         )
       }
 

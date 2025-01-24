@@ -7,8 +7,8 @@ export default function Carrinho({ carrinho, remover, comprar }) {
         <div className={carrinhoStyles.displayProdutos}>
             {carrinho.map((produto) => (
                 <div key={produto.id} className={carrinhoStyles.produtoItem}>
-                    <h2 className={carrinhoStyles.produtoNome}>{produto.nome}</h2>
-                    <img className={carrinhoStyles.produtoImagem} src={produto.image} alt={produto.nome} />
+                    <h2 className={carrinhoStyles.produtoNome}>{produto.nomeProduto}</h2>
+                    <img className={carrinhoStyles.produtoImagem} src={produto.imagem} alt={produto.nomeProduto} />
                     <p className={carrinhoStyles.produtoPreco}>Preço: R${produto.preco}</p>
                     <button className={carrinhoStyles.botaoCarrinho} onClick={() => remover(produto.id)}><RemoveShoppingCartOutlinedIcon/></button>
                 </div>

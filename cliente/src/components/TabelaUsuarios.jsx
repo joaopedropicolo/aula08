@@ -13,9 +13,9 @@ export default function TabelaUsuarios({ ExportarPDF, Deletar, usuarios, showTab
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Nome</th>
-            <th>E-mail</th>
+            <th>ID Usuário</th>
+            <th>Nome Usuário</th>
+            <th>E-mail Usuário</th>
             <th>
               <Link to={'/registro'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><PersonAddOutlinedIcon/>Adicionar</Button></Link>
               <Link to={'http://localhost:3000/usuarios'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><VisibilityIcon/>Exibir</Button></Link>

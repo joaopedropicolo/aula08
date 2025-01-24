@@ -8,6 +8,7 @@ export default function Alterar() {
     const { id } = useParams();
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("")
     useEffect(() => {
       const buscarUsuario = async () => {
         try {
@@ -15,6 +16,7 @@ export default function Alterar() {
           const dados = await resposta.json();
           setNome(dados.nome);
           setEmail(dados.email);
+          setSenha(dados.senha)
         } catch {
           alert("Ocorreu um erro na API!");
         }
@@ -28,7 +30,7 @@ export default function Alterar() {
         await fetch(`http://localhost:3000/usuarios/${id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nome, email })
+          body: JSON.stringify({ nome, email, senha })
         });
         const Toast = Swal.mixin({
           toast: true,
@@ -66,6 +68,8 @@ export default function Alterar() {
         <input type="text" value={nome} onChange={(event) => setNome(event.target.value)}/>
         <p>Email:</p>
         <input type="email" value={email} onChange={(event) => setEmail(event.target.value)}/>
+        <p>Senha:</p>
+        <input type="senha" value={senha} onChange={(event) => setSenha(event.target.value)}/>
         <button type="submit">Salvar Alterações</button>
         <br></br>
         <Link to={'/admin'}>Voltar</Link>
