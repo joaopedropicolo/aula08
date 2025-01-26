@@ -13,6 +13,7 @@ export default function Alterar() {
   const [preco, setPreco] = useState("");
 
   useEffect(() => {
+    document.title = `Alterar Produto ${id}`;
     const buscarProduto = async () => {
       try {
         const resposta = await fetch(`http://localhost:3000/produtos/${id}`);
@@ -29,7 +30,6 @@ export default function Alterar() {
     buscarProduto();
   }, [id]);
 
-  // Editar o produto
   const editarProduto = async (event) => {
     event.preventDefault();
     try {

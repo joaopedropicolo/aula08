@@ -83,7 +83,7 @@ app.delete('/usuarios/:id', (req, res) => {
     res.status(204).send();
 });
 
-//////////// Produtos ////////////
+//////////////////////// PRODUTOS ////////////////////////
 
 let produtos = [
     {
@@ -91,7 +91,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 167
     },
     {
@@ -99,7 +99,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 220
     },
     {
@@ -107,7 +107,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 600
     },
     {
@@ -115,7 +115,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 120
     },
     {
@@ -123,7 +123,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 240
     },
     {
@@ -131,7 +131,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 250
     },
     {
@@ -139,7 +139,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 900
     },
     {
@@ -147,47 +147,47 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 580
     },
     {
         id: 9,
-        nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-        marca: "Asics",
-        imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
-        preco: 210
+        nomeProduto: "Camisa Real Madrid Away Torcedor Adidas",
+        marca: "Adidas",
+        imagem: "https://static.netshoes.com.br/produtos/camisa-real-madrid-away-2324-sn-torcedor-adidas-masculina/42/FB8-8328-342/FB8-8328-342_zoom1.jpg",
+        tipo: 'Camisa',
+        preco: 349
     },
     {
         id: 10,
-        nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-        marca: "Asics",
-        imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
+        nomeProduto: "Camisa Vasco I 24/25 Jogador Kappa Masculina",
+        marca: "Kappa",
+        imagem: "https://static.netshoes.com.br/produtos/camisa-vasco-i-2425-jogador-kappa-masculina/26/D24-6176-026/D24-6176-026_zoom1.jpg",
         tipo: 'Masculino',
         preco: 340
     },
     {
         id: 11,
-        nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-        marca: "Asics",
-        imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        nomeProduto: "Camisa Palmeiras II 23/24 s/ nº Torcedor Puma",
+        marca: "Puma",
+        imagem: "https://static.netshoes.com.br/produtos/camisa-palmeiras-ii-2324-s-n-torcedor-puma-masculina/14/2I3-7590-014/2I3-7590-014_zoom1.jpg",
+        tipo: 'Camisa',
         preco: 230
     },
     {
         id: 12,
-        nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-        marca: "Asics",
-        imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
-        preco: 400
+        nomeProduto: "Mochila Adidas Linear Unissex",
+        marca: "Adidas",
+        imagem: "https://static.netshoes.com.br/produtos/mochila-adidas-linear-unissex/26/FB8-4525-026/FB8-4525-026_zoom1.jpg",
+        tipo: 'Mochila',
+        preco: 299
     },
     {
         id: 13,
-        nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
-        marca: "Asics",
-        imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        nomeProduto: "Jaqueta New Era MLB New York Yankees Desert Logo",
+        marca: "MLB",
+        imagem: "https://static.netshoes.com.br/produtos/jaqueta-new-era-mlb-new-york-yankees-desert-logo-masculina/38/IJX-5321-138/IJX-5321-138_zoom1.jpg",
+        tipo: 'Jaqueta',
         preco: 500
     },
     {

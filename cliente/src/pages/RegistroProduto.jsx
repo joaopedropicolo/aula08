@@ -3,7 +3,7 @@ import styles from '../styles/Register.module.css';
 import { Button } from '@mui/material';
 
 export default function Registrar() {
-
+  document.title = 'Registrar Produto';
   const [nomeProduto, setNomeProduto] = useState('');
   const [marca, setMarca] = useState('');
   const [imagem, setImagem] = useState('');

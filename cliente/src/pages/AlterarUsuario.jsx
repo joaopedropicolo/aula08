@@ -10,6 +10,7 @@ export default function Alterar() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("")
     useEffect(() => {
+      document.title = `Alterar Usuário ${id}`;
       const buscarUsuario = async () => {
         try {
           const resposta = await fetch(`http://localhost:3000/usuarios/${id}`);

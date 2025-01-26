@@ -5,8 +5,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { Link } from 'react-router-dom';
-import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import AddBusinessOutlinedIcon from '@mui/icons-material/AddBusinessOutlined';
+import BadgeOutlinedIcon from '@mui/icons-material/BadgeOutlined';
+import StoreOutlinedIcon from '@mui/icons-material/StoreOutlined';
+import TypeSpecimenOutlinedIcon from '@mui/icons-material/TypeSpecimenOutlined';
+import RollerSkatingOutlinedIcon from '@mui/icons-material/RollerSkatingOutlined';
+import LocalAtmOutlinedIcon from '@mui/icons-material/LocalAtmOutlined';
 
 export default function TabelaProdutos({ ExportarPDF, Deletar, produtos, showTable }) {
   return (
@@ -14,11 +18,11 @@ export default function TabelaProdutos({ ExportarPDF, Deletar, produtos, showTab
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>ID Produto</th>
-            <th>Nome Produto</th>
-            <th>Marca Produto</th>
-            <th>Tipo Produto</th>
-            <th>Preço Produto</th>
+            <th><BadgeOutlinedIcon/> ID Produto</th>
+            <th><StoreOutlinedIcon/> Nome Produto</th>
+            <th><TypeSpecimenOutlinedIcon/> Marca Produto</th>
+            <th><RollerSkatingOutlinedIcon/> Tipo Produto</th>
+            <th><LocalAtmOutlinedIcon/> Preço Produto</th>
             <th>
             <Link to={'/registroProduto'}><Button variant="outlined" onClick={showTable} className={styles.exibirButton}><AddBusinessOutlinedIcon/>Adicionar</Button></Link>
               <Link to="http://localhost:3000/produtos">

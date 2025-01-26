@@ -18,6 +18,7 @@ import { jsPDF } from "jspdf"
 export default function Produtos(){
 const [listaObjetos, setListaObjetos] = useState([]);
   useEffect(() => {
+    document.title = 'Netshoes Produtos';
     const buscarProduto = async () => {
       try {
         const resposta = await fetch("http://localhost:3000/produtos");
@@ -28,7 +29,7 @@ const [listaObjetos, setListaObjetos] = useState([]);
       }
     };
     buscarProduto();
-  }, [listaObjetos]);
+  }, []);
 
 const [carrinho, setCarrinho] = useState([]);
     const adicionarItemCarrinho = (produto) => {
@@ -93,7 +94,6 @@ const [carrinho, setCarrinho] = useState([]);
           doc.save("Compra Netshoes.pdf");
       };
       
-
 const comprar = () => {
     if (carrinho.length === 0) {
         const Toast = Swal.mixin({
@@ -156,9 +156,12 @@ const comprar = () => {
         const listaOrdenada = [...listaObjetos].sort((a, b) => {return a.nomeProduto.localeCompare(b.nomeProduto);});
         setListaObjetos(listaOrdenada);
       };
-
-      const orderPreco = () => {
+      const orderPrecoBarato = () => {
         const listaOrdenada = [...listaObjetos].sort((a, b) => {return a.preco - b.preco});
+        setListaObjetos(listaOrdenada);
+      };
+      const orderPrecoCaro = () => {
+        const listaOrdenada = [...listaObjetos].sort((a, b) => {return b.preco - a.preco});
         setListaObjetos(listaOrdenada);
       };
 
@@ -204,10 +207,13 @@ const comprar = () => {
                 <div className={listaProdutosStyles.displayProdutos}>
                 <h1 className={homeStyles.titleProdutos}><AutoAwesomeOutlinedIcon/> MAIS VISTOS: <AutoAwesomeOutlinedIcon/></h1>
                 <button onClick={() => orderAZ()}>
-                    <AbcOutlinedIcon/>
+                    <AbcOutlinedIcon/> A a Z
                 </button>
-                <button onClick={() => orderPreco()}>
-                    <AttachMoneyOutlinedIcon/>
+                <button onClick={() => orderPrecoBarato()}>
+                    <AttachMoneyOutlinedIcon/> Barato ao mais caro
+                </button>
+                <button onClick={() => orderPrecoCaro()}>
+                    <AttachMoneyOutlinedIcon/> Caro ao mais barato
                 </button>
                     <ListaProdutos produtos={listaObjetos.sort()} adicionarItemCarrinho={adicionarItemCarrinho}/>
                 </div>

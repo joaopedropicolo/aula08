@@ -17,6 +17,7 @@ import Loading from '../components/Loading';
 export default function Home() {
     const [listaObjetos, setListaObjetos] = useState([]);
       useEffect(() => {
+        document.title = 'Netshoes Home';
         const buscarProduto = async () => {
           try {
             const resposta = await fetch("http://localhost:3000/produtos");

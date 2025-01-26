@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import TabelaUsuarios from "../components/TabelaUsuarios";
-import Loading from "../components/Loading";
 import TabelaProdutos from "../components/TabelaProdutos";
 
 export default function Admin() {
@@ -22,6 +21,7 @@ export default function Admin() {
 
   const [produtos, setProdutos] = useState([]);
   useEffect(() => {
+    document.title = 'Netshoes Admin';
     const buscarProduto = async () => {
       try {
         const resposta = await fetch("http://localhost:3000/produtos");
@@ -175,6 +175,7 @@ export default function Admin() {
       doc.save("Lista de Produtos NetShoes.pdf");
     }
   };
+
   return (
     <>
       <TabelaUsuarios usuarios={usuarios} ExportarPDF={ExportarPDF} Deletar={Deletar} />
