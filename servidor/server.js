@@ -163,7 +163,7 @@ let produtos = [
         nomeProduto: "Camisa Vasco I 24/25 Jogador Kappa Masculina",
         marca: "Kappa",
         imagem: "https://static.netshoes.com.br/produtos/camisa-vasco-i-2425-jogador-kappa-masculina/26/D24-6176-026/D24-6176-026_zoom1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Camisa',
         preco: 340
     },
     {
@@ -195,7 +195,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 200
     },
     {
@@ -203,7 +203,7 @@ let produtos = [
         nomeProduto: "Tênis Masculino Asics Gel-Thunderlight - Preto+Laranja",
         marca: "Asics",
         imagem: "https://static.netshoes.com.br/produtos/tenis-puma-skyrocket-lite-unissex/58/PI3-1812-058/PI3-1812-058_detalhe1.jpg",
-        tipo: 'Masculino',
+        tipo: 'Tênis',
         preco: 300
     }
 ];

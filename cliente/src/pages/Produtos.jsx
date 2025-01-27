@@ -82,11 +82,12 @@ const [carrinho, setCarrinho] = useState([]);
             objeto.id,
             objeto.nomeProduto,
             objeto.marca,
+            objeto.tipo,
             'R$'+objeto.preco
           ]);
           doc.text('LISTA DE COMPRAS NETSHOES', 10, 10);
           doc.autoTable({
-            head: [["ID", "Nome", "Marca", "Preço"]],
+            head: [["ID", "Nome", "Marca", "Tipo", "Preço"]],
             body: tabelaDados
           });
           doc.text(`PRODUTOS TOTAL: ${carrinho.length} /// PREÇO TOTAL: R$${PrecoTotal}`, 10, doc.lastAutoTable.finalY + 10)
@@ -94,8 +95,8 @@ const [carrinho, setCarrinho] = useState([]);
           doc.save("Compra Netshoes.pdf");
       };
       
-const comprar = () => {
-    if (carrinho.length === 0) {
+    const comprar = () => {
+      if (carrinho.length === 0) {
         const Toast = Swal.mixin({
             toast: true,
             position: "top-end",
@@ -107,7 +108,7 @@ const comprar = () => {
             icon: "error",
             title: "Carrinho está vazio!"
         });
-    } else {
+     } else {
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: "btn btn-success",

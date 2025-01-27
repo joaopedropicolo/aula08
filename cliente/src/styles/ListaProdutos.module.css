@@ -13,11 +13,11 @@
   border: 1px solid #7700ff;
   border-radius: 8px;
   padding: 16px;
-  width: calc(25% - 32px); /* Reduzindo a largura para mais itens por linha */
+  width: calc(25% - 32px);
   box-shadow: 0 40px 40px rgba(98, 0, 255, 0.1);
   text-align: center;
   transition: transform 0.3s ease, border 0.3s ease;
-  height: 300px;
+  height: 370px;
 }
 
 .produtoItem:hover {
@@ -38,10 +38,25 @@
 }
 
 .produtoImagem {
-  max-width: 50%;  /* Reduzindo o tamanho da imagem */
-  height: auto;  /* Mantendo a proporção */
+  max-width: 50%;
+  height: auto;
   margin-bottom: 8px;
 }
+
+.produtoDetalhes {
+  margin: 8px 0;
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.produtoDetalhes span {
+  display: inline-block;
+  margin-right: 8px;
+  color: #6900cc;
+  font-weight: 600;
+}
+
 
 .botaoCarrinho {
   background-color: #6900cc;
@@ -60,4 +75,31 @@
   background-color: #9e3df8;
   border-color: #00ff4c;
   transform: scale(1.05);
+}
+
+.botaoEditar {
+  background-color: #ffcc00;
+  color: black;
+  border: 2px solid #ffb300;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.botaoEditar:hover {
+  background-color: #ffe066;
+  border-color: #ffaa00;
+  transform: scale(1.05);
+}
+
+
+.botaoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
 }
