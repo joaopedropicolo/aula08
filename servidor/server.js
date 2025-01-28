@@ -153,8 +153,8 @@ let produtos = [
     {
         id: 9,
         nomeProduto: "Camisa Real Madrid Away Torcedor Adidas",
-        marca: "Adidas",
-        imagem: "https://static.netshoes.com.br/produtos/camisa-real-madrid-away-2324-sn-torcedor-adidas-masculina/42/FB8-8328-342/FB8-8328-342_zoom1.jpg",
+        marca: "Umbro",
+        imagem: "https://static.netshoes.com.br/produtos/camiseta-umbro-x-panini-flag-soccer-brasil-masculina/30/2IA-9373-030/2IA-9373-030_zoom1.jpg",
         tipo: 'Camisa',
         preco: 349
     },
